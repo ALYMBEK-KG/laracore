@@ -4,7 +4,7 @@ window.wysiwyg = {
 };
 
 if (window.wysiwyg.Jodit && window.wysiwyg.editorExist) {
-    window.wysiwyg.Jodit.make('.editor', {
+    window.wysiwyg.Jodit.make('textarea.editor', {
         language: document.documentElement.lang,
         uploader: {
             insertImageAsBase64URI: true
