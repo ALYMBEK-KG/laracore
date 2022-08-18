@@ -5070,13 +5070,106 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-window.Jodit = (__webpack_require__(/*! jodit */ "./node_modules/jodit/build/jodit.min.js").Jodit);
+__webpack_require__(/*! ./themeSwitcher */ "./resources/js/themeSwitcher.js");
 
-if (window.Jodit) {
-  window.Jodit.make('.editor', {
+__webpack_require__(/*! ./wysiwyg */ "./resources/js/wysiwyg.js");
+
+/***/ }),
+
+/***/ "./resources/js/themeSwitcher.js":
+/*!***************************************!*\
+  !*** ./resources/js/themeSwitcher.js ***!
+  \***************************************/
+/***/ (() => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var ThemeSwitcher = /*#__PURE__*/function () {
+  function ThemeSwitcher(element, switcherElement) {
+    var _this = this;
+
+    _classCallCheck(this, ThemeSwitcher);
+
+    this.element = element;
+    this.switcherElement = switcherElement;
+    this.switcherElement.addEventListener('click', function () {
+      return _this.switchTheme();
+    }, true);
+    var settings = this.getSettings();
+
+    if (settings) {
+      if (!settings.theme) {
+        settings.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      this.element.classList.remove('dark', 'light');
+      this.element.classList.add(settings.theme);
+      this.saveSettings(settings);
+    }
+  }
+
+  _createClass(ThemeSwitcher, [{
+    key: "switchTheme",
+    value: function switchTheme() {
+      var settings = this.getSettings();
+
+      if (this.element.classList.contains('light')) {
+        settings.theme = 'dark';
+        this.element.classList.remove('light');
+        this.element.classList.add('dark');
+      } else {
+        settings.theme = 'light';
+        this.element.classList.remove('dark');
+        this.element.classList.add('light');
+      }
+
+      this.saveSettings(settings);
+    }
+  }, {
+    key: "getSettings",
+    value: function getSettings() {
+      return JSON.parse(localStorage.getItem('settings') || '{}');
+    }
+  }, {
+    key: "saveSettings",
+    value: function saveSettings(settings) {
+      localStorage.setItem('settings', JSON.stringify(settings));
+      return true;
+    }
+  }]);
+
+  return ThemeSwitcher;
+}();
+
+;
+var themeSwitcherButton = document.getElementById('theme-switcher');
+
+if (themeSwitcherButton) {
+  window.themeSwitcher = new ThemeSwitcher(document.documentElement, themeSwitcherButton);
+}
+
+/***/ }),
+
+/***/ "./resources/js/wysiwyg.js":
+/*!*********************************!*\
+  !*** ./resources/js/wysiwyg.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+window.wysiwyg = {
+  Jodit: (__webpack_require__(/*! jodit */ "./node_modules/jodit/build/jodit.min.js").Jodit),
+  editorExist: document.querySelector('textarea.editor')
+};
+
+if (window.wysiwyg.Jodit && window.wysiwyg.editorExist) {
+  window.wysiwyg.Jodit.make('.editor', {
     language: document.documentElement.lang,
     uploader: {
-      "insertImageAsBase64URI": true
+      insertImageAsBase64URI: true
     }
   });
 }

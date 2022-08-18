@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white dark:bg-slate-800 border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -19,6 +19,11 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <!-- Theme Switcher -->
+                <div class="ml-3 relative">
+                    <x-jet-theme-switcher></x-jet-theme-switcher>
+                </div>
+
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">

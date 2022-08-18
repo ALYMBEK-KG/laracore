@@ -27,12 +27,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-window.Jodit = (require('jodit')).Jodit;
-if (window.Jodit) {
-    window.Jodit.make('.editor', {
-        language: document.documentElement.lang,
-        uploader: {
-            "insertImageAsBase64URI": true
-        }
-    });
-}
+require('./themeSwitcher');
+require('./wysiwyg');
