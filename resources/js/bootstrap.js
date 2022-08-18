@@ -27,5 +27,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-require('./themeSwitcher');
+require('./theme-switcher');
 require('./wysiwyg');

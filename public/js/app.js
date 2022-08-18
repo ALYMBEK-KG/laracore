@@ -5070,16 +5070,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-__webpack_require__(/*! ./themeSwitcher */ "./resources/js/themeSwitcher.js");
+__webpack_require__(/*! ./theme-switcher */ "./resources/js/theme-switcher.js");
 
 __webpack_require__(/*! ./wysiwyg */ "./resources/js/wysiwyg.js");
 
 /***/ }),
 
-/***/ "./resources/js/themeSwitcher.js":
-/*!***************************************!*\
-  !*** ./resources/js/themeSwitcher.js ***!
-  \***************************************/
+/***/ "./resources/js/theme-switcher.js":
+/*!****************************************!*\
+  !*** ./resources/js/theme-switcher.js ***!
+  \****************************************/
 /***/ (() => {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5101,15 +5101,13 @@ var ThemeSwitcher = /*#__PURE__*/function () {
     }, true);
     var settings = this.getSettings();
 
-    if (settings) {
-      if (!settings.theme) {
-        settings.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      }
-
-      this.element.classList.remove('dark', 'light');
-      this.element.classList.add(settings.theme);
-      this.saveSettings(settings);
+    if (!settings.theme) {
+      settings.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
+
+    this.element.classList.remove('dark', 'light');
+    this.element.classList.add(settings.theme);
+    this.saveSettings(settings);
   }
 
   _createClass(ThemeSwitcher, [{

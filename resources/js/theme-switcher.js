@@ -6,15 +6,15 @@ class ThemeSwitcher {
         this.switcherElement.addEventListener('click', () => this.switchTheme(), true);
 
         const settings = this.getSettings();
-        if (settings) {
-            if (!settings.theme) {
-                settings.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
 
-            this.element.classList.remove('dark', 'light');
-            this.element.classList.add(settings.theme);
-            this.saveSettings(settings);
+        if (!settings.theme) {
+            settings.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
+
+        this.element.classList.remove('dark', 'light');
+        this.element.classList.add(settings.theme);
+
+        this.saveSettings(settings);
     }
 
     switchTheme() {
