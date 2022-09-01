@@ -33,20 +33,19 @@
                             <button
                                 type="button"
                                 title="{{ __('Switch language') }}"
-                                class="p-2 rounded-md uppercase hover:bg-light-darker dark:hover:bg-dark-lighter"
+                                class="p-2 rounded-md hover:bg-light-darker dark:hover:bg-dark-lighter"
                             >
-                                en
+                                {{ config('app.locales', ['en' => 'English'])[config('app.locale', 'en')] }}
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-jet-dropdown-link href="/" class="uppercase">
-                                kg
-                            </x-jet-dropdown-link>
-                        </x-slot>
-                        <x-slot name="content">
-                            <x-jet-dropdown-link href="/" class="uppercase">
-                                ru
-                            </x-jet-dropdown-link>
+                            @foreach(config('app.locales', ['en' => 'English']) as $code => $locale)
+                                @if($code !== config('app.locale', 'en'))
+                                    <x-jet-dropdown-link href="{{ route('localization', $code) }}" class="">
+                                        {{ $locale }}
+                                    </x-jet-dropdown-link>
+                                @endif
+                            @endforeach
                         </x-slot>
                     </x-jet-dropdown>
                 </div>
