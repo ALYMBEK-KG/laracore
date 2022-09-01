@@ -17,7 +17,6 @@ class JetstreamServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerComponent('textarea');
-        $this->registerComponent('theme-switcher');
     }
 
     /**

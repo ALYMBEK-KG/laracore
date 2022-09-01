@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
 });
 
 Route::middleware([

@@ -1,13 +1,19 @@
-<x-guest-layout>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl leading-tight">
+            {{ __('Login') }}
+        </h2>
+    </x-slot>
+
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <x-jet-application-logo class="block h-14 w-auto" />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
 
         @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
+            <div class="mb-4 font-medium text-sm text-success">
                 {{ session('status') }}
             </div>
         @endif
@@ -28,13 +34,19 @@
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span class="ml-2 text-sm">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="underline text-sm">
+                        {{ __('Register') }}
+                    </a>
+                @endif
+
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a href="{{ route('password.request') }}" class="underline text-sm ml-4">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
@@ -45,4 +57,4 @@
             </div>
         </form>
     </x-jet-authentication-card>
-</x-guest-layout>
+</x-app-layout>

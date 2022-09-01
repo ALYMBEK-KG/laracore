@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 @import 'jodit/build/jodit.min.css';
+
+.jodit-workplace {
+    background-color: theme('colors.light.DEFAULT');
+    color: theme('colors.dark.DEFAULT');
+}

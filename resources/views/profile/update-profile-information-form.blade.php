@@ -13,16 +13,17 @@
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
                 <input type="file" class="hidden"
-                            wire:model="photo"
-                            x-ref="photo"
-                            x-on:change="
-                                    photoName = $refs.photo.files[0].name;
-                                    const reader = new FileReader();
-                                    reader.onload = (e) => {
-                                        photoPreview = e.target.result;
-                                    };
-                                    reader.readAsDataURL($refs.photo.files[0]);
-                            " />
+                    wire:model="photo"
+                    x-ref="photo"
+                    x-on:change="
+                        photoName = $refs.photo.files[0].name;
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            photoPreview = e.target.result;
+                        };
+                        reader.readAsDataURL($refs.photo.files[0]);
+                    "
+                />
 
                 <x-jet-label for="photo" value="{{ __('Photo') }}" />
 
@@ -69,13 +70,13 @@
                 <p class="text-sm mt-2">
                     {{ __('Your email address is unverified.') }}
 
-                    <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900" wire:click.prevent="sendEmailVerification">
+                    <button type="button" class="underline text-sm" wire:click.prevent="sendEmailVerification">
                         {{ __('Click here to re-send the verification email.') }}
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
-                    <p v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-green-600">
+                    <p v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-success">
                         {{ __('A new verification link has been sent to your email address.') }}
                     </p>
                 @endif
